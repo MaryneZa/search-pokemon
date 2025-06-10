@@ -64,3 +64,11 @@ export const SEARCH_POKEMON = gql`
     }
 `
 
+export const TEST_POKEMON_TYPE = gql`
+    query Test($name: String!) {
+        pokemon(name: $name) {
+            types
+        }
+    }
+`
+
