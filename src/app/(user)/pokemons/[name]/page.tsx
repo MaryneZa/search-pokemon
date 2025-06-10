@@ -39,7 +39,7 @@ export default function PokemonPage() {
 
     if (loading) return <p className="text-center py-8 text-gray-400">Loading...</p>;
     if (error) return <p className="text-center text-red-500 py-8">{error.message}</p>;
-    if (!data?.pokemon) return <p className="text-center py-8 text-gray-400">No "{name}" Pokémon found</p>;
+    if (!data?.pokemon) return <p className="text-center py-8 text-gray-400">No &quot;{name}&quot; Pokémon found</p>;
 
     const pokemon = data.pokemon;
 

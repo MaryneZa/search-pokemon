@@ -2,7 +2,7 @@ import Image from "next/image";
 import Search from "@/assets/pokeball-search.png"
 
 interface props {
-    onSubmit: (e: any) => void
+    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
 }
 
 export default function SearchBar({ onSubmit }: props) {

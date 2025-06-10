@@ -2,10 +2,6 @@
 
 import { useQuery } from "@apollo/client";
 import { GET_POKEMONS } from "@/graphql/queries/pokemon";
-import SearchBar from "@/components/search-bar";
-import { useEffect, useState } from "react";
-import { SEARCH_POKEMON } from "@/graphql/queries/pokemon";
-import { useRouter } from "next/navigation";
 import { Pokemon } from "@/types/pokemon";
 import Link from "next/link";
 import Image from "next/image";
