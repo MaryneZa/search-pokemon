@@ -5,71 +5,46 @@ import { GET_POKEMONS } from "@/graphql/queries/pokemon";
 import SearchBar from "@/components/search-bar";
 import { useEffect, useState } from "react";
 import { SEARCH_POKEMON } from "@/graphql/queries/pokemon";
+import { useRouter } from "next/navigation";
+import { Pokemon } from "@/types/pokemon";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function HomePage() {
-    const [searchName, setSearchName] = useState("")
-    const [notFound, setNotFound] = useState<boolean>(false)
-    // useEffect(() => {        
-    // }, []);
-    const { data: listData, loading: listLoading, error: listError } = useQuery(GET_POKEMONS, {
+
+    const { data, loading, error } = useQuery(GET_POKEMONS, {
         variables: {
-            first: 10
+            first: 151
         }
     });
 
-    const { data: searchData, loading: searchLoading, error: searchError } = useQuery(SEARCH_POKEMON, {
-        variables: {
-            name: searchName,
-            skip: !searchName
-        },
-        onCompleted: (data) => {
-            if (!data.pokemon) {
-                setNotFound(true)
-                return
-            }
-            setNotFound(false)
-            return
-        }
-    })
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const name = formData.get('name')?.toString() || "";
-        setSearchName(name)
-    }
-
-
+    if (loading) return <p className="text-center py-8 text-gray-400">Loading...</p>;
+    if (error) return <p className="text-center text-red-500 py-8">{error.message}</p>;
 
     return (
-        <div>
-            <SearchBar onSubmit={handleSubmit} />
+        <div className="p-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-4">
+                {data?.pokemons?.map((pokemon: Pokemon) => (
+                    <Link
+                        key={pokemon.id}
+                        href={`/pokemons/${pokemon.name.trim()}`}
+                        className="flex flex-col bg-white p-4 rounded shadow text-gray-700 justify-center items-center hover:shadow-md transform transition-all duration-200 hover:scale-105 hover:border-red-300 hover:border-2"
+                    >
+                        <div className="relative w-full h-20">
+                            <Image
+                                src={pokemon.image}
+                                alt={pokemon.name}
+                                fill
+                                style={{ objectFit: "contain" }}
+                            />
+                        </div>
 
-            {searchName ? (
-                notFound ? (
-                    <div className="text-red-500 font-semibold mt-4">Not found</div>
-                ) : (
-                    searchData?.pokemon && (
-                        <div className="mt-4">
-                            <h2 className="text-xl font-semibold">{searchData.pokemon.name}</h2>
-                            <img src={searchData.pokemon.image} alt={searchData.pokemon.name} className="w-24 h-24" />
-                            <p>{searchData.pokemon.classification}</p>
-                        </div>
-                    )
-                )
-            ) : (
-                <div className="grid grid-cols-8 gap-4 mt-4">
-                    {listData?.pokemons?.map((pokemon: any) => (
-                        <div
-                            key={pokemon.id}
-                            className="flex flex-col bg-white p-4 rounded shadow text-gray-700 justify-center items-center"
-                        >
-                            <img src={pokemon.image} alt={pokemon.name} className="w-24 h-24" />
-                            <h2 className="text-lg font-semibold">{pokemon.name}</h2>
-                            <p className="text-sm">{pokemon.classification}</p>
-                        </div>
-                    ))}
-                </div>
-            )}
+                        <h2 className="text-lg font-semibold">{pokemon.name}</h2>
+                        <p className="text-sm">{pokemon.classification}</p>
+                    </Link>
+                ))}
+            </div>
+
 
         </div>
     );

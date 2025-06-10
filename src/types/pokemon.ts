@@ -1,7 +1,7 @@
 export interface Pokemon {
   id: string;
   number?: string;
-  name?: string;
+  name: string;
   classification?: string;
   types?: string[];
   resistant?: string[];
@@ -9,7 +9,7 @@ export interface Pokemon {
   fleeRate?: number;
   maxCP?: number;
   maxHP?: number;
-  image?: string;
+  image: string;
   weight?: {
     minimum?: string;
     maximum?: string;
@@ -29,4 +29,8 @@ export interface Attack {
   name?: string;
   type?: string;
   damage?: number;
+}
+
+export interface PokemonData {
+  pokemon: Pokemon | null;
 }

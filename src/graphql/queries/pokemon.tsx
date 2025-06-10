@@ -25,10 +25,30 @@ export const GET_POKEMON_DETAIL = gql`
             maxCP
             maxHP
             image
+            weight {
+                minimum
+                maximum
+            }
+            height {
+                minimum
+                maximum
+            }
             evolutions {
                 id
                 name
                 image
+            }
+            attacks {
+                fast {
+                    name
+                    type
+                    damage
+                }
+                special {
+                    name
+                    type
+                    damage
+                }
             }
         }
 }
