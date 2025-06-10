@@ -51,8 +51,12 @@ export default function PokemonPage() {
                 } else {
                     setPokemon(result.pokemon);
                 }
-            } catch (err: any) {
-                setError(err.message || "Something went wrong");
+            } catch (err) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError("Something went wrong");
+                }
             } finally {
                 setLoading(false);
             }
