@@ -1,6 +1,5 @@
 import { TEST_POKEMON_TYPE } from "@/graphql/queries/pokemon";
 import { PokemonData } from "@/types/pokemon";
-import { useQuery } from "@apollo/client";
 import { client } from "@/lib/apolloClient";
 
 describe('Test Pokemon Type', () => {

@@ -3,9 +3,8 @@
 import { useParams } from "next/navigation";
 import { useQuery } from "@apollo/client";
 import { GET_POKEMON_DETAIL } from "@/graphql/queries/pokemon";
-import Link from "next/link";
 import Image from "next/image";
-import { PokemonData, Pokemon } from "@/types/pokemon";
+import { PokemonData } from "@/types/pokemon";
 import { EvolutionsBlocks } from "@/components/evolution-block";
 
 interface DetailBlockProps {
@@ -109,7 +108,7 @@ export default function PokemonPage() {
                         </div>
                     </div>
 
-                    {pokemon.evolutions?.length > 0 && (
+                    {pokemon.evolutions && pokemon.evolutions?.length > 0 && (
                         <div>
                             <h2 className="font-semibold text-lg">Evolutions</h2>
                             <div className="mt-2 flex gap-4 flex-wrap">
