@@ -12,7 +12,13 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
-    domains: ["img.pokemondb.net"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'img.pokemondb.net',
+        pathname: '/**', // Allow all paths under this domain
+      },
+    ],
   },
 };
 

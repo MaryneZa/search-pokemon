@@ -6,6 +6,7 @@ import { GET_POKEMON_DETAIL } from "@/graphql/queries/pokemon";
 import Image from "next/image";
 import { PokemonData } from "@/types/pokemon";
 import { EvolutionsBlocks } from "@/components/evolution-block";
+import NotFoundImg from "@/assets/file-not-found.jpg"
 
 interface DetailBlockProps {
     label: string;
@@ -45,15 +46,18 @@ export default function PokemonPage() {
 
     return (
         <div className="py-16 px-8 max-w-5xl mx-auto">
-            <div className="flex flex-col md:flex-row justify-center gap-6 bg-white rounded-lg shadow p-6">
-
-                <div className="relative flex-1 w-full h-100">
-                    <Image
-                        src={pokemon.image || "/fall_back.png"}
-                        alt={pokemon.name || "Pokemon"}
-                        fill
-                        style={{ objectFit: "contain" }}
-                    />
+            <div className="flex flex-col md:flex-row justify-center gap-6 bg-white rounded-lg shadow p-12">
+                <div className="flex-1">
+                    <div className="relative w-full h-64 sm:h-80 md:h-96">
+                        <Image
+                            src={pokemon.image || NotFoundImg}
+                            alt={pokemon.name || "Pokemon"}
+                            fill
+                            priority
+                            sizes="100%"
+                            style={{ objectFit: "contain" }}
+                        />
+                    </div>
                 </div>
                 <div className="flex-1 text-gray-700 space-y-4 p-5">
                     <h1 className="text-4xl font-bold">{pokemon.name}</h1>

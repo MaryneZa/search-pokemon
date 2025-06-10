@@ -14,6 +14,8 @@ export const EvolutionsBlocks = ({ evo }: { evo: Pokemon }) => {
                         src={evo.image}
                         alt={evo.name || "Pokemon"}
                         fill
+                        sizes="100%"
+                        priority
                         style={{ objectFit: "contain" }}
                     />
                 </div>
