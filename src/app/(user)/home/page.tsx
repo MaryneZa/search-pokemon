@@ -2,7 +2,7 @@
 
 import { useQuery } from "@apollo/client";
 import { GET_POKEMONS } from "@/graphql/queries/pokemon";
-import { Pokemon, PokemonData } from "@/types/pokemon";
+import { Pokemon} from "@/types/pokemon";
 import PokemonBlock from "@/components/pokemon-block";
 
 export default function HomePage() {
