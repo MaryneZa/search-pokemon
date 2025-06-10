@@ -1,6 +1,4 @@
-import { TEST_POKEMON_TYPE } from "@/graphql/queries/pokemon";
-import { PokemonData } from "@/types/pokemon";
-import { client } from "@/lib/apolloClient";
+import { fetchPokemonDetail } from "@/services/pokemon";
 
 describe('Test Pokemon Type', () => {
 
@@ -12,12 +10,8 @@ describe('Test Pokemon Type', () => {
 
     test_data.forEach(({ name, expect_result }) => {
         test(`${name} should have types ${expect_result.join(", ")}`, async () => {
-            const { data, errors } = await client.query<PokemonData>({
-                query: TEST_POKEMON_TYPE,
-                variables: { name },
-            })
+            const data = await fetchPokemonDetail(name);
 
-            expect(errors).toBeUndefined();
             const result = data?.pokemon?.types;
             expect(result).toEqual(expect_result);
         });

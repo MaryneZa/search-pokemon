@@ -35,6 +35,6 @@ export interface PokemonData {
   pokemon: Pokemon | null;
 }
 
-export interface PokemonData {
-  pokemons: Pokemon | null;
+export interface PokemonsData {
+  pokemons: [Pokemon] | null;
 }

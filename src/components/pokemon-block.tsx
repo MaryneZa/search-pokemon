@@ -15,6 +15,7 @@ export default function PokemonBlock({pokemon} : {pokemon: Pokemon}) {
                     src={pokemon.image || NotFoundImg}
                     alt={pokemon.name}
                     fill
+                    sizes="100%"
                     style={{ objectFit: "contain" }}
                 />
             </div>

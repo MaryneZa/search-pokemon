@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
-export const client = new ApolloClient({
+export const apolloClient = new ApolloClient({
   uri: 'https://graphql-pokemon2.vercel.app',
   cache: new InMemoryCache(),
 });
