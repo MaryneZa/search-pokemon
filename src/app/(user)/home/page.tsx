@@ -7,7 +7,7 @@ import PokemonBlock from "@/components/pokemon-block";
 
 export default function HomePage() {
 
-    const { data, loading, error } = useQuery<PokemonData>(GET_POKEMONS, {
+    const { data, loading, error } = useQuery(GET_POKEMONS, {
         variables: {
             first: 151
         }

@@ -34,3 +34,7 @@ export interface Attack {
 export interface PokemonData {
   pokemon: Pokemon | null;
 }
+
+export interface PokemonData {
+  pokemons: Pokemon | null;
+}
