@@ -46,7 +46,7 @@ export default function PokemonPage() {
 
             try {
                 const result = await fetchPokemonDetail(name?.toString() || "");
-                if (!result) {
+                if (!result.pokemon) {
                     setNotFound(true);
                 } else {
                     setPokemon(result.pokemon);
